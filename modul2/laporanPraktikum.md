@@ -95,7 +95,7 @@ func main()  {
 	fmt.Printf("Detail berat: %d kg + %d gr\nDetail biaya: Rp. %d + Rp. %d\nTotal biaya: Rp. %d", berat_kg, berat_gr, biaya_kg, biaya_gr, total_biaya )
 }
 ```
-## Output:
+### Output:
 ![Screenshot Output Soal Latihan Modul 2C](output/soal2c.png)
 
 

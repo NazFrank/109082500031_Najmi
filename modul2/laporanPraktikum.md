@@ -30,7 +30,7 @@ func main() {
 ```
 
 ### Output 
-![Screenshot Output Unguided 1_1]()
+![Screenshot Output Soal 1](output/soal2a.png)
 
 
 ## 2. Soal Latihan Modul 2B
@@ -59,7 +59,7 @@ func main() {
 ```
 ### Output:
 
-![Screenshot Output Unguided 1_1]()
+![Screenshot Output Soal 2](output/soal2b.png)
 [penjelasan]
 
 ## 3. Soal Latihan Modul 2C

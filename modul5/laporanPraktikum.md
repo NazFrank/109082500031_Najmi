@@ -36,7 +36,7 @@ func main() {
 Program ini memiliki 1 variable integer sebagai inputan yaitu n, dan memiliki 1 fungsi rekursif yaitu fibonacci. Sistem kerja dari program ini adalah, fungsi fibonacci digunakan untuk menghitung nilai suku ke-n dari deret fibonacci secara rekursif, dimana base-case dari fungsi ini adalah ketika n sama dengan 0 maka fungsi mengembalikan nilai 0, dan ketika n sama dengan 1 maka fungsi mengembalikan nilai 1. Pada recursive-case, fungsi mengembalikan hasil penjumlahan dari pemanggilan fibonacci(n-1) dan fibonacci(n-2), dimana setiap pemanggilan akan terus dipecah menjadi sub-masalah yang lebih kecil hingga mencapai base-case. Pada fungsi main, program akan meminta pengguna memasukan nilai n, setelah itu program memanggil fungsi fibonacci dengan argumen n dan menampilkan hasilnya.
 
 
-## 2. Soal Latihan Modul 3.2
+## 2. Soal Latihan Modul 5.2
 Buatlah sebuah program yang digunakan untuk menampilkan pola bintang berikut ini dengan menggunakan fungsi rekursif. N adalah masukan dari user.
 
 ### soal52.go

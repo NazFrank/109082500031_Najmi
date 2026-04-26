@@ -3,7 +3,7 @@
 
 
 ## 1. Soal Latihan Modul 7.1
-
+Suatu lingkaran didefinisikan dengan koordinat titik pusat (cx, cy) dengan radius r. Apabila diberikan dua buah lingkaran, maka tentukan posisi sebuah titik sembarang (x, y) berdasarkan dua lingkaran tersebut.
 ### soal51.go
 
 ```go
@@ -73,6 +73,7 @@ Program ini memiliki 2 tipe bentukan yaitu titik yang menyimpan koordinat x dan 
 ## 2. Soal Latihan Modul 7.2
 
 ### soal72.go
+Sebuah array digunakan untuk menampung sekumpulan bilangan bulat. Buatlah program yang digunakan untuk mengisi array tersebut sebanyak N elemen nilai. Asumsikan array memiliki kapasitas penyimpanan data sejumlah elemen tertentu.
 
 ```go
 package main
@@ -157,10 +158,50 @@ func main() {
 Program ini memiliki 1 variable integer sebagai inputan jumlah data yaitu N, dan 1 slice integer yaitu a yang diisi sebanyak N elemen, serta memiliki 3 fungsi yaitu t, h, dan c. Sistem kerja dari program ini adalah, fungsi t digunakan untuk menampilkan elemen-elemen array berdasarkan mode m yang diberikan, dimana jika m sama dengan 0 maka semua elemen ditampilkan, jika m sama dengan 1 maka hanya elemen dengan indeks ganjil yang ditampilkan, jika m sama dengan 2 maka hanya elemen dengan indeks genap yang ditampilkan, dan jika m sama dengan 3 maka hanya elemen dengan indeks kelipatan x yang ditampilkan. Fungsi h digunakan untuk menghapus elemen pada indeks tertentu secara manual dengan cara menggeser semua elemen setelah indeks tersebut satu posisi ke kiri, kemudian mengembalikan slice yang sudah diperpendek satu elemen. Fungsi c digunakan untuk menghitung rata-rata dan varians dari elemen-elemen array, dimana rata-rata dihitung dengan menjumlahkan seluruh elemen dibagi jumlahnya, dan varians dihitung dengan menjumlahkan kuadrat selisih tiap elemen terhadap rata-rata kemudian dibagi jumlah elemen. Pada fungsi main, program meminta pengguna memasukkan jumlah data N, kemudian mengisi slice a sebanyak N elemen, lalu meminta nilai x untuk mode kelipatan dan indeks yang ingin dihapus. Setelah itu program memanggil fungsi t sebanyak 4 kali dengan mode 0 hingga 3 untuk menampilkan elemen sesuai kondisi masing-masing, kemudian memanggil fungsi h untuk menghapus elemen pada indeks yang diinputkan dan menampilkan array setelah penghapusan, terakhir program memanggil fungsi c dan menampilkan hasil rata-rata dan standar deviasinya.
 
 ## 3. Soal Latihan Modul 7.3
+Sebuah program digunakan untuk menyimpan dan menampilkan nama-nama klub yang memenangkan pertandingan bola pada suatu grup pertandingan. Buatlah program yang digunakan untuk merekap skor pertandingan bola 2 buah klub bola yang berlaga. Pertama-tama program meminta masukan nama-nama klub yang bertanding, kemudian program meminta masukan skor hasil pertandingan kedua klub tersebut. Yang disimpan dalam array adalah nama-nama klub yang menang saja. Proses input skor berhenti ketika skor salah satu atau kedua klub tidak valid (negatif). Di akhir program, tampilkan daftar klub yang memenangkan pertandingan.
 
 ### soal73.go
 
 ```go
+package main
+import "fmt"
+
+func main() {
+	var (
+		hasil          [100]string
+		jumlah, skorA, skorB, pertandinganKe,i int = 0,0,0,1,0
+		klubA, klubB string
+	)
+
+	fmt.Print("Klub A : ")
+	fmt.Scan(&klubA)
+	fmt.Print("Klub B : ")
+	fmt.Scan(&klubB)
+
+	for {
+		fmt.Printf("Pertandingan %d : ", pertandinganKe)
+		fmt.Scan(&skorA, &skorB)
+		if skorA < 0 || skorB < 0 {
+			break
+		}
+
+		if skorA > skorB {
+			hasil[jumlah] = klubA
+		} else if skorB > skorA {
+			hasil[jumlah] = klubB
+		} else {
+			hasil[jumlah] = "Draw"
+		}
+		jumlah++
+		pertandinganKe++
+	}
+
+	for i = 0; i < jumlah; i++ {
+		fmt.Printf("Hasil %d : %s\n", i+1, hasil[i])
+	}
+
+	fmt.Println("Pertandingan selesai")
+}
 ```
 ## Output:
 ![Screenshot Output Soal Latihan Modul 7.3](output/soal73.png)
@@ -169,11 +210,86 @@ Program ini memiliki 1 variable integer sebagai inputan jumlah data yaitu N, dan
 Program ini memiliki 1 array string bernama hasil dengan kapasitas 100 elemen untuk menyimpan hasil tiap pertandingan, serta beberapa variable integer yaitu jumlah, skorA, skorB, pertandinganKe, dan i yang dideklarasikan sekaligus dengan nilai awal, dan 2 variable string yaitu klubA dan klubB. Sistem kerja dari program ini adalah, pertama program meminta pengguna memasukkan nama dua klub yang akan bertanding. Kemudian program masuk ke dalam perulangan untuk meminta input skor tiap pertandingan secara terus-menerus, perulangan berhenti ketika salah satu skor bernilai negatif. Pada setiap pertandingan, program membandingkan skorA dan skorB, jika skorA lebih besar maka nama klubA disimpan ke array hasil, jika skorB lebih besar maka nama klubB yang disimpan, dan jika sama maka disimpan string "Draw". Setelah perulangan selesai, program menampilkan seluruh isi array hasil dari indeks 0 hingga jumlah-1 dengan format "Hasil ke- : nama", kemudian mencetak "Pertandingan selesai".
 
 ## 4. Soal Latihan Modul 7.4
+Sebuah array digunakan untuk menampung sekumpulan karakter, Anda diminta untuk membuat sebuah subprogram untuk melakukan membalikkan urutan isi array dan memeriksa apakah membentuk palindrom.
 
 ### soal74.go
 
 ```go
+package main
 
+import "fmt"
+
+type tabel [127]rune
+
+func isiArray(t *tabel, n *int) {
+	var token string
+	*n = 0
+	for {
+		fmt.Scan(&token)
+		if token == "." || *n >= 127 {
+			break
+		}
+		t[*n] = rune(token[0])
+		(*n)++
+	}
+}
+
+func cetakArray(t tabel, n int) {
+	var i int = 0
+	for i = 0; i < n; i++ {
+		fmt.Printf("%c ", t[i])
+	}
+	fmt.Println()
+}
+
+func balikanArray(t *tabel, n int) {
+	var (
+		i int = 0
+		j int = n - 1
+	)
+	for i < j {
+		t[i], t[j] = t[j], t[i]
+		i++
+		j--
+	}
+}
+
+func palindrom(t tabel, n int) bool {
+	var (
+		salinan tabel
+		i       int = 0
+	)
+	for i = 0; i < n; i++ {
+		salinan[i] = t[i]
+	}
+	balikanArray(&salinan, n)
+	for i = 0; i < n; i++ {
+		if t[i] != salinan[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func main() {
+	var (
+		tab     tabel
+		m       int = 0
+		isPalin bool
+	)
+
+	fmt.Print("Teks\t\t: ")
+	isiArray(&tab, &m)
+
+	isPalin = palindrom(tab, m)
+
+	balikanArray(&tab, m)
+
+	fmt.Print("Reverse teks\t: ")
+	cetakArray(tab, m)
+
+	fmt.Printf("Palindrom\t? %v\n", isPalin)
+}
 ```
 ## Output:
 ![Screenshot Output Soal Latihan Modul 7.4](output/soal74.png)
